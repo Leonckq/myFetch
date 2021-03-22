@@ -1,0 +1,16 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: registry.ekuaibao.com/ci/ci-nodejs:12.11.1
+  script:
+    - npm install
+    - npm run build
+    - export NODE_OPTIONS="--max-old-space-size=4096"
+    - npm run publish2npm
+  only:
+    - /^v?\d+(\.\d+)+[\.\-_\w]*/
+  tags:
+    - i9

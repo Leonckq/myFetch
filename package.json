@@ -1,0 +1,68 @@
+{
+  "name": "@ekuaibao/fetch",
+  "version": "0.5.21",
+  "description": "network library",
+  "author": "nanyuantingfeng <nanyuantingfeng@aliyun.com>",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "rm -rf dist && npm run optimize && npm run copy",
+    "optimize": "npm run build:src && npm run build:types",
+    "copy": "cp package.json README.md .npmignore dist",
+    "publish2npm": "npm run build && npm publish dist",
+    "build:src": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly -p tsconfig.types.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.ekuaibao.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ekuaibao.com:mistery/fetch.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/jest": "^26",
+    "@types/lru-cache": "^5.1.0",
+    "event-source": "^0.1.1",
+    "husky": "^1.3.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^26.4.2",
+    "jest-cli": "^26.4.2",
+    "lint-staged": "^10",
+    "nock": "^13.0.4",
+    "prettier": "^1.17.0",
+    "rollup": "^1.10.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^26.3.0",
+    "typescript": "^3.9.7"
+  },
+  "cliVersion": "1.0.4",
+  "husky": {
+    "hooks": {}
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,jsx,ts,tsx,json,css,less,scss,md}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/assets/**/*"
+    ]
+  },
+  "dependencies": {
+    "@ekuaibao/lru-cache": "^1.1.0",
+    "@types/koa-compose": "^3.2.5",
+    "koa-compose": "^4.1.0",
+    "qs": "^6.9.4",
+    "tslib": "^1"
+  }
+}
